@@ -1,0 +1,39 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Demo3</title>
+    <script src="~/Scripts/jquery-2.2.1.min.js"></script>
+    <script src="~/Scripts/knockout-3.4.0.js"></script>
+    <script>
+        var viewModel = {
+            isVisible: ko.observable(false),
+            inputStr: ko.observable("这里有东西")
+        };
+        viewModel.isShow = ko.dependentObservable({
+            read: function () {
+                return this.inputStr() == '';
+            },
+            owner: viewModel
+        });
+
+        $(document).ready(function () {
+            ko.applyBindings(viewModel);
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <h1>1、visible绑定</h1>
+        <h1>-<span data-bind="visible: isVisible">我在这呢~</span>-</h1>
+        <input data-bind="value:inputStr" />
+        <h1>-<span data-bind="visible:isShow">请输入内容</span>-</h1>
+    </div>
+</body>
+</html>

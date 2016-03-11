@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BC225047-AEB8-4852-966C-C09DC59F728B}</ProjectGuid>
+    <ProjectGuid>{A15498F6-6CB7-41AF-8549-073BE6C1B530}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>QASystem.Core</RootNamespace>
-    <AssemblyName>QASystem.Core</AssemblyName>
+    <RootNamespace>QASystem.Service</RootNamespace>
+    <AssemblyName>QASystem.Service</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,18 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseEntity.cs" />
-    <Compile Include="Domain\Answer.cs" />
-    <Compile Include="Domain\AnswerComment.cs" />
-    <Compile Include="Domain\EnumQuestionStatus.cs" />
-    <Compile Include="Domain\Question.cs" />
-    <Compile Include="Domain\QuestionCategory.cs" />
-    <Compile Include="Domain\Tag.cs" />
-    <Compile Include="Domain\TagMap.cs" />
-    <Compile Include="Domain\User.cs" />
-    <Compile Include="IRepository.cs" />
-    <Compile Include="IUnitOfWork.cs" />
+    <Compile Include="UserService\IUserService.cs" />
+    <Compile Include="UserService\UserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\QASystem.Core\QASystem.Core.csproj">
+      <Project>{bc225047-aeb8-4852-966c-c09dc59f728b}</Project>
+      <Name>QASystem.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

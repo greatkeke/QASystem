@@ -1,0 +1,68 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/Scripts/knockout-3.4.0.js"></script>
+
+    <script src="~/Scripts/jquery-2.2.1.min.js"></script>
+    <script>
+        var person = {
+            name: ko.observable("bob"),
+            lastName: ko.observable("Smith"),
+            //price:ko.observable(100),
+        };
+        person.fullname = ko.dependentObservable({
+            read: function () {
+                return this.name() + " " + this.lastName();
+            },
+            write: function (value) {
+                var lastSpacePos = value.lastIndexOf(" ");
+                if (lastSpacePos > 0) {
+                    this.name(value.substring(0, lastSpacePos));
+                    this.lastName(value.substring(lastSpacePos));
+                };
+            },
+            owner: person,
+        });
+        $(document).ready(function () {
+            ko.applyBindings(person,document.getElementById('d1'));
+        })
+    </script>
+    <script>
+        var viewModel = {
+            price: ko.observable(100)
+        };
+        viewModel.priceStr = ko.dependentObservable({
+            read: function () {
+                return "$" + this.price().toFixed(2);
+            },
+            write: function (value) {
+                value = parseFloat(value.replace(/[^\.\d]/g, ""));
+                this.price(isNaN(value) ? 0 : value);
+            },
+            owner: viewModel,
+        });
+        $(document).ready(function () {
+            ko.applyBindings(viewModel, document.getElementById('d2'));
+        })
+    </script>
+</head>
+<body>
+    <div id="d1" class='liveExample'>
+        <h1><span data-bind="text:name"></span></h1>
+        <h1><span data-bind="text:lastName"></span></h1>
+        <h1>Hello,<input data-bind="value:fullname" />!</h1>
+    </div>
+    <div id="d2">
+        <h1>!<span data-bind="text:price"></span>!</h1>
+        <h1><input data-bind="value:priceStr" /></h1>
+    </div>
+</body>
+</html>
