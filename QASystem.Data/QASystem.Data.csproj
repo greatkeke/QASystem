@@ -71,6 +71,10 @@
     <Compile Include="Migrations\201603100848140_InitModel.Designer.cs">
       <DependentUpon>201603100848140_InitModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603120248548_UpdateQuestionCatogory.cs" />
+    <Compile Include="Migrations\201603120248548_UpdateQuestionCatogory.Designer.cs">
+      <DependentUpon>201603120248548_UpdateQuestionCatogory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QASystemDbContext.cs" />
@@ -90,6 +94,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201603100848140_InitModel.resx">
       <DependentUpon>201603100848140_InitModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603120248548_UpdateQuestionCatogory.resx">
+      <DependentUpon>201603120248548_UpdateQuestionCatogory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

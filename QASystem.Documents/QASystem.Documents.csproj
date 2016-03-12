@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A15498F6-6CB7-41AF-8549-073BE6C1B530}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{CF8AB169-733E-4B4C-9C96-E997C43D3C2C}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>QASystem.Service</RootNamespace>
-    <AssemblyName>QASystem.Service</AssemblyName>
+    <RootNamespace>QASystem.Documents</RootNamespace>
+    <AssemblyName>QASystem.Documents</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -30,29 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
+    <None Include="App.config" />
+    <None Include="QASystem功能设计.doc" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="QuestionCategoryService\IQuestionCategoryService.cs" />
-    <Compile Include="QuestionCategoryService\QuestionCategoryService.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserService\IUserService.cs" />
-    <Compile Include="UserService\UserService.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\QASystem.Core\QASystem.Core.csproj">
-      <Project>{bc225047-aeb8-4852-966c-c09dc59f728b}</Project>
-      <Name>QASystem.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

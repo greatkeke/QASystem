@@ -1,0 +1,7 @@
+﻿@using QASystem.Core.Domain;
+@{
+    foreach (QuestionCategory cate in ViewBag.Cates)
+    {
+        <li>@Html.ActionLink(linkText: cate.Name, actionName: "Category", controllerName: "Question", routeValues: new { cateId = cate.Id }, htmlAttributes: null)</li>
+    }
+}

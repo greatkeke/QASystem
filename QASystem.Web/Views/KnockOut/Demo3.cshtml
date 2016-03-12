@@ -14,7 +14,28 @@
     <script>
         var viewModel = {
             isVisible: ko.observable(false),
-            inputStr: ko.observable("这里有东西")
+            inputStr: ko.observable("这里有东西"),
+            clickCount: ko.observable(0),
+            clickFunction: function () {
+                var previous = this.clickCount();
+                this.clickCount(previous + 1);
+            },
+            myFuction: function (event) {
+                if (event.shiftKey) {
+                    alert("哦，你shift了");
+                } else {
+                    this.clickFunction();
+                };
+            },
+            backColor: ko.observable(false),
+            enableDetails: function () {
+                this.backColor(true);
+            },
+            enableDetailsOut: function () {
+                this.backColor(false);
+            },
+            userName: ko.observable(),
+            userPwd: ko.observable(),
         };
         viewModel.isShow = ko.dependentObservable({
             read: function () {
@@ -34,6 +55,25 @@
         <h1>-<span data-bind="visible: isVisible">我在这呢~</span>-</h1>
         <input data-bind="value:inputStr" />
         <h1>-<span data-bind="visible:isShow">请输入内容</span>-</h1>
+    </div>
+    <div>
+        <h1>7、click绑定</h1>
+        <h1>您一共点击了<span data-bind="text:clickCount"></span>次。</h1>
+        <button data-bind="click:clickFunction">点我啊~艹</button>
+        <button data-bind="click:myFuction">事件源对象</button>
+    </div>
+    <div>
+        <h1>8、event绑定</h1>
+        <div data-bind="event:{mouseover:enableDetails,mouseout:enableDetailsOut},style:{backgroundColor:backColor()?'red':'green'}" style="width:100px;height:100px">用鼠标指我啊</div>
+
+    </div>
+    <div>
+        <h1>12、value绑定</h1>
+        <div>
+            <input data-bind="value:userName,valueUpdate:'afterkeydown'" />
+            <input type="password" data-bind="value:userPwd,valueUpdate:'afterkeydown'" />
+            <span data-bind="text:userName"></span>||<span data-bind="text:userPwd"></span>
+        </div>
     </div>
 </body>
 </html>
