@@ -1,4 +1,5 @@
 ﻿using QASystem.Service.SubjectService;
+using QASystem.Web.Attributes;
 using System.Web.Mvc;
 
 namespace QASystem.Web.Controllers
@@ -13,6 +14,7 @@ namespace QASystem.Web.Controllers
         }
 
         [ChildActionOnly]
+        [Skip]
         public PartialViewResult List()
         {
             //获取所有的分类

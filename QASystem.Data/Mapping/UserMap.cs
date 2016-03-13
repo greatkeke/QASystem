@@ -10,6 +10,9 @@ namespace QASystem.Data.Mapping
             ToTable("User");
             HasKey(n => n.Id);
             Property(n => n.Username).HasMaxLength(100);
+            Property(n => n.Email).HasMaxLength(100);
+            Property(u => u.Password).HasMaxLength(100);
+            Property(u => u.ImgUrl).HasMaxLength(500);
         }
     }
 }

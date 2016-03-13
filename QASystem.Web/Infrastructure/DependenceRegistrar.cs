@@ -7,6 +7,7 @@ using QASystem.Service.QuestionService;
 using QASystem.Service.TopicService;
 using System.Reflection;
 using System.Web.Mvc;
+using QASystem.Service.AccountService;
 
 namespace QASystem.Web.Infrastructure
 {
@@ -24,6 +25,7 @@ namespace QASystem.Web.Infrastructure
             builder.RegisterType<SubjectService>().As<ISubjectService>();
             builder.RegisterType<QuestionService>().As<IQuestionService>();
             builder.RegisterType<TopicService>().As<ITopicService>();
+            builder.RegisterType<AccountService>().As<IAccountService>();
 
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

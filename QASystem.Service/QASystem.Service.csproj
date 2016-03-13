@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountService\AccountService.cs" />
+    <Compile Include="AccountService\DataHelper.cs" />
+    <Compile Include="AccountService\IAccountService.cs" />
     <Compile Include="SubjectService\ISubjectService.cs" />
     <Compile Include="SubjectService\SubjectService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -55,9 +58,7 @@
       <Name>QASystem.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UserService\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

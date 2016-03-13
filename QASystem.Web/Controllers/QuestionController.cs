@@ -1,5 +1,6 @@
 ﻿using QASystem.Service.QuestionService;
 using QASystem.Service.TopicService;
+using QASystem.Web.Attributes;
 using System;
 using System.Web.Mvc;
 
@@ -22,6 +23,7 @@ namespace QASystem.Web.Controllers
             return View();
         }
         [HttpGet]
+        [Skip]
         public ActionResult Index()
         {
             ViewBag.Questions = _questionService.NewestList(0, 25);

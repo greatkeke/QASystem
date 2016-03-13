@@ -62,13 +62,28 @@
     <Compile Include="EfRepository.cs" />
     <Compile Include="Mapping\AnswerCommentMap.cs" />
     <Compile Include="Mapping\AnswerMap.cs" />
+    <Compile Include="Mapping\QuestionCollectionMap.cs" />
     <Compile Include="Mapping\SubjectMap.cs" />
     <Compile Include="Mapping\QuestionMap.cs" />
+    <Compile Include="Mapping\TopicCollectionMap.cs" />
     <Compile Include="Mapping\TopicMap.cs" />
+    <Compile Include="Mapping\UserCollectionMap.cs" />
     <Compile Include="Mapping\UserMap.cs" />
     <Compile Include="Migrations\201603122320017_CreateModel.cs" />
     <Compile Include="Migrations\201603122320017_CreateModel.Designer.cs">
       <DependentUpon>201603122320017_CreateModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603130746477_u_user.cs" />
+    <Compile Include="Migrations\201603130746477_u_user.Designer.cs">
+      <DependentUpon>201603130746477_u_user.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603130750523_u_user2.cs" />
+    <Compile Include="Migrations\201603130750523_u_user2.Designer.cs">
+      <DependentUpon>201603130750523_u_user2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603131059056_u_model.cs" />
+    <Compile Include="Migrations\201603131059056_u_model.Designer.cs">
+      <DependentUpon>201603131059056_u_model.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -89,6 +104,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201603122320017_CreateModel.resx">
       <DependentUpon>201603122320017_CreateModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603130746477_u_user.resx">
+      <DependentUpon>201603130746477_u_user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603130750523_u_user2.resx">
+      <DependentUpon>201603130750523_u_user2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603131059056_u_model.resx">
+      <DependentUpon>201603131059056_u_model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
