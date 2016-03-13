@@ -62,18 +62,13 @@
     <Compile Include="EfRepository.cs" />
     <Compile Include="Mapping\AnswerCommentMap.cs" />
     <Compile Include="Mapping\AnswerMap.cs" />
-    <Compile Include="Mapping\QuestionCategoryMap.cs" />
+    <Compile Include="Mapping\SubjectMap.cs" />
     <Compile Include="Mapping\QuestionMap.cs" />
-    <Compile Include="Mapping\TagMapMap.cs" />
-    <Compile Include="Mapping\Tag_Map.cs" />
+    <Compile Include="Mapping\TopicMap.cs" />
     <Compile Include="Mapping\UserMap.cs" />
-    <Compile Include="Migrations\201603100848140_InitModel.cs" />
-    <Compile Include="Migrations\201603100848140_InitModel.Designer.cs">
-      <DependentUpon>201603100848140_InitModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603120248548_UpdateQuestionCatogory.cs" />
-    <Compile Include="Migrations\201603120248548_UpdateQuestionCatogory.Designer.cs">
-      <DependentUpon>201603120248548_UpdateQuestionCatogory.cs</DependentUpon>
+    <Compile Include="Migrations\201603122320017_CreateModel.cs" />
+    <Compile Include="Migrations\201603122320017_CreateModel.Designer.cs">
+      <DependentUpon>201603122320017_CreateModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -92,11 +87,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603100848140_InitModel.resx">
-      <DependentUpon>201603100848140_InitModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603120248548_UpdateQuestionCatogory.resx">
-      <DependentUpon>201603120248548_UpdateQuestionCatogory.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603122320017_CreateModel.resx">
+      <DependentUpon>201603122320017_CreateModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

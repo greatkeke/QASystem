@@ -3,11 +3,11 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace QASystem.Data.Mapping
 {
-    public class Tag_Map : EntityTypeConfiguration<Tag>
+    public class SubjectMap : EntityTypeConfiguration<Subject>
     {
-        public Tag_Map()
+        public SubjectMap()
         {
-            this.ToTable("Tag");
+            this.ToTable("Subject");
             this.Property(u => u.Name).HasMaxLength(200);
         }
     }

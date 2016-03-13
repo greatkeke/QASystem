@@ -1,4 +1,4 @@
-﻿namespace QASystem.Core.Domain
+﻿namespace QASystem.Core.DTOModels
 {
     /// <summary>
     /// 问题的状态
@@ -7,6 +7,8 @@
     {
         Created,
         Published,
+        UnAnswered,
+        Compelted,
         Deleted
     }
 }

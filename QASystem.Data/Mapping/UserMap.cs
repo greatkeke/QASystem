@@ -7,9 +7,9 @@ namespace QASystem.Data.Mapping
     {
         public UserMap()
         {
-            this.ToTable("User");
-            this.Property(u => u.Name).HasMaxLength(200);
-            this.Property(u => u.Email).HasMaxLength(200);
+            ToTable("User");
+            HasKey(n => n.Id);
+            Property(n => n.Username).HasMaxLength(100);
         }
     }
 }

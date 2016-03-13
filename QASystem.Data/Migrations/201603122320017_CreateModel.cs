@@ -3,7 +3,7 @@ namespace QASystem.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitModel : DbMigration
+    public partial class CreateModel : DbMigration
     {
         public override void Up()
         {
@@ -63,45 +63,36 @@ namespace QASystem.Data.Migrations
                         Content = c.String(unicode: false),
                         DateStartUtc = c.DateTime(nullable: false, precision: 0),
                         DateEndUtc = c.DateTime(nullable: false, precision: 0),
+                        AuthorId = c.Int(nullable: false),
                         Votes = c.Int(nullable: false),
                         Status = c.Short(nullable: false),
-                        Author_Id = c.Int(),
+                        TopicId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("User", t => t.Author_Id)
-                .Index(t => t.Author_Id);
+                .ForeignKey("User", t => t.AuthorId, cascadeDelete: true)
+                .ForeignKey("Topic", t => t.TopicId, cascadeDelete: true)
+                .Index(t => t.AuthorId)
+                .Index(t => t.TopicId);
             
             CreateTable(
-                "QuestionCategory",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(maxLength: 200, storeType: "nvarchar"),
-                        ParentId = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "TagMap",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        TagId = c.Int(nullable: false),
-                        QuestionId = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("Question", t => t.QuestionId, cascadeDelete: true)
-                .ForeignKey("Tag", t => t.TagId, cascadeDelete: true)
-                .Index(t => t.TagId)
-                .Index(t => t.QuestionId);
-            
-            CreateTable(
-                "Tag",
+                "Topic",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(maxLength: 200, storeType: "nvarchar"),
                         num = c.Double(nullable: false),
+                        SubjectId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("Subject", t => t.SubjectId, cascadeDelete: true)
+                .Index(t => t.SubjectId);
+            
+            CreateTable(
+                "Subject",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(maxLength: 200, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -109,25 +100,24 @@ namespace QASystem.Data.Migrations
         
         public override void Down()
         {
-            DropForeignKey("TagMap", "TagId", "Tag");
-            DropForeignKey("TagMap", "QuestionId", "Question");
             DropForeignKey("AnswerComment", "ToUserId", "User");
             DropForeignKey("AnswerComment", "FromUserId", "User");
             DropForeignKey("AnswerComment", "AnswerId", "Answer");
             DropForeignKey("Answer", "QuestionId", "Question");
-            DropForeignKey("Question", "Author_Id", "User");
+            DropForeignKey("Question", "TopicId", "Topic");
+            DropForeignKey("Topic", "SubjectId", "Subject");
+            DropForeignKey("Question", "AuthorId", "User");
             DropForeignKey("Answer", "AuthorId", "User");
-            DropIndex("TagMap", new[] { "QuestionId" });
-            DropIndex("TagMap", new[] { "TagId" });
-            DropIndex("Question", new[] { "Author_Id" });
+            DropIndex("Topic", new[] { "SubjectId" });
+            DropIndex("Question", new[] { "TopicId" });
+            DropIndex("Question", new[] { "AuthorId" });
             DropIndex("Answer", new[] { "QuestionId" });
             DropIndex("Answer", new[] { "AuthorId" });
             DropIndex("AnswerComment", new[] { "ToUserId" });
             DropIndex("AnswerComment", new[] { "FromUserId" });
             DropIndex("AnswerComment", new[] { "AnswerId" });
-            DropTable("Tag");
-            DropTable("TagMap");
-            DropTable("QuestionCategory");
+            DropTable("Subject");
+            DropTable("Topic");
             DropTable("Question");
             DropTable("User");
             DropTable("Answer");

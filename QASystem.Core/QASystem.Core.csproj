@@ -32,6 +32,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,16 +45,24 @@
     <Compile Include="BaseEntity.cs" />
     <Compile Include="Domain\Answer.cs" />
     <Compile Include="Domain\AnswerComment.cs" />
-    <Compile Include="Domain\EnumQuestionStatus.cs" />
+    <Compile Include="PerRequestCacheManager.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="ICacheManager.cs" />
+    <Compile Include="IPagedList.cs" />
+    <Compile Include="MemoryCacheManager.cs" />
+    <Compile Include="PagedList.cs" />
+    <Compile Include="DTOModels\QuestionViewModel.cs" />
+    <Compile Include="DTOModels\QuestionStatus.cs" />
     <Compile Include="Domain\Question.cs" />
-    <Compile Include="Domain\QuestionCategory.cs" />
-    <Compile Include="Domain\Tag.cs" />
-    <Compile Include="Domain\TagMap.cs" />
+    <Compile Include="Domain\Subject.cs" />
+    <Compile Include="Domain\Topic.cs" />
     <Compile Include="Domain\User.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QAException.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -190,7 +190,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KnockOutController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\QuestionCategoryController.cs" />
+    <Compile Include="Controllers\SubjectController.cs" />
+    <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -267,7 +268,8 @@
     <Content Include="Views\KnockOut\Index.cshtml" />
     <Content Include="Views\KnockOut\ContactList.cshtml" />
     <Content Include="Views\KnockOut\Demo3.cshtml" />
-    <Content Include="Views\QuestionCategory\List.cshtml" />
+    <Content Include="Views\Subject\List.cshtml" />
+    <Content Include="Views\Question\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

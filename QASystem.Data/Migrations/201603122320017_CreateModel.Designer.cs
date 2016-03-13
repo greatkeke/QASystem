@@ -7,13 +7,13 @@ namespace QASystem.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class InitModel : IMigrationMetadata
+    public sealed partial class CreateModel : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitModel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateModel));
         
         string IMigrationMetadata.Id
         {
-            get { return "201603100848140_InitModel"; }
+            get { return "201603122320017_CreateModel"; }
         }
         
         string IMigrationMetadata.Source

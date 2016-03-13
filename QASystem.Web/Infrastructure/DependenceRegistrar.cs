@@ -2,8 +2,9 @@
 using Autofac.Integration.Mvc;
 using QASystem.Core;
 using QASystem.Data;
-using QASystem.Service.QuestionCategoryService;
-using QASystem.Service.UserService;
+using QASystem.Service.SubjectService;
+using QASystem.Service.QuestionService;
+using QASystem.Service.TopicService;
 using System.Reflection;
 using System.Web.Mvc;
 
@@ -19,8 +20,10 @@ namespace QASystem.Web.Infrastructure
             builder.Register<IUnitOfWork>(a => new QASystemDbContext("QASystemDb")).InstancePerLifetimeScope();
             builder.RegisterGeneric(typeof(EfRepository<>)).As(typeof(IRepository<>));
             //类型注入
-            builder.RegisterType<UserService>().As<IUserService>();
-            builder.RegisterType<QuestionCategoryService>().As<IQuestionCategoryService>();
+            //builder.RegisterType<UserService>().As<IUserService>();
+            builder.RegisterType<SubjectService>().As<ISubjectService>();
+            builder.RegisterType<QuestionService>().As<IQuestionService>();
+            builder.RegisterType<TopicService>().As<ITopicService>();
 
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

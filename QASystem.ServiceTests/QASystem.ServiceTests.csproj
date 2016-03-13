@@ -62,8 +62,6 @@
   <ItemGroup>
     <Compile Include="CommonHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QuestionCategoryService\QuestionCategoryServiceTests.cs" />
-    <Compile Include="UserService\UserServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\QASystem.Core\QASystem.Core.csproj">
