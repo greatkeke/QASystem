@@ -85,6 +85,14 @@
     <Compile Include="Migrations\201603131059056_u_model.Designer.cs">
       <DependentUpon>201603131059056_u_model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603132247470_u_Topic.cs" />
+    <Compile Include="Migrations\201603132247470_u_Topic.Designer.cs">
+      <DependentUpon>201603132247470_u_Topic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603140029598_u_topicmap.cs" />
+    <Compile Include="Migrations\201603140029598_u_topicmap.Designer.cs">
+      <DependentUpon>201603140029598_u_topicmap.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QASystemDbContext.cs" />
@@ -113,6 +121,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603131059056_u_model.resx">
       <DependentUpon>201603131059056_u_model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603132247470_u_Topic.resx">
+      <DependentUpon>201603132247470_u_Topic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603140029598_u_topicmap.resx">
+      <DependentUpon>201603140029598_u_topicmap.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -13,11 +13,11 @@ namespace QASystem.Web.Helper
 {
     public class OperateContext
     {
-        public const string Admin_CookiePath = "/admin/";
-        public const string Admin_InfoKey = "ainfo";
-        public const string Admin_PermissionKey = "apermission";
-        public const string Admin_TreeString = "aTreeString";
-        public const string Admin_LogicSessionKey = "BLLSession";
+        public const string CookiePath = "/";
+        public const string InfoKey = "ainfo";
+        //public const string Admin_PermissionKey = "apermission";
+        //public const string Admin_TreeString = "aTreeString";
+        //public const string Admin_LogicSessionKey = "BLLSession";
 
         private HttpSessionState Session = HttpContext.Current.Session;
         private HttpRequest Request = HttpContext.Current.Request;
@@ -51,15 +51,15 @@ namespace QASystem.Web.Helper
         // <summary>
         /// 当前用户对象
         /// </summary>
-        public User Usr
+        public User LoginUser
         {
             get
             {
-                return Session[Admin_InfoKey] as User;
+                return Session[InfoKey] as User;
             }
             set
             {
-                Session[Admin_InfoKey] = value;
+                Session[InfoKey] = value;
             }
         }
 
@@ -70,16 +70,16 @@ namespace QASystem.Web.Helper
             if (usr != null)
             {
                 //保存 用户数据(Session or Cookie)
-                Usr = usr;
+                LoginUser = usr;
                 //如果选择了复选框，则要使用cookie保存数据
                 if (model.RememberMe)
                 {
                     //将用户id加密成字符串
                     string strCookieValue = SecurityHelper.EncryptUserInfo(usr.Id.ToString());
                     //创建cookie
-                    HttpCookie cookie = new HttpCookie(Admin_InfoKey, strCookieValue);
+                    HttpCookie cookie = new HttpCookie(InfoKey, strCookieValue);
                     cookie.Expires = DateTime.Now.AddDays(1);
-                    cookie.Path = Admin_CookiePath;
+                    cookie.Path = CookiePath;
                     Response.Cookies.Add(cookie);
                 }
                 return true;
@@ -90,9 +90,9 @@ namespace QASystem.Web.Helper
         public bool IsLogin()
         {
             //1.验证用户是否登陆(Session && Cookie)
-            if (Session[Admin_InfoKey] == null)
+            if (Session[InfoKey] == null)
             {
-                if (Request.Cookies[Admin_InfoKey] == null)
+                if (Request.Cookies[InfoKey] == null)
                 {
                     //重新登陆，内部已经调用了 Response.End(),后面的代码都不执行了！ (注意：如果Ajax请求，此处不合适！)
                     //filterContext.HttpContext.Response.Redirect("/admin/admin/login");
@@ -100,11 +100,11 @@ namespace QASystem.Web.Helper
                 }
                 else//如果有cookie则从cookie中获取用户id并查询相关数据存入 Session
                 {
-                    string strUserInfo = Request.Cookies[Admin_InfoKey].Value;
+                    string strUserInfo = Request.Cookies[InfoKey].Value;
                     strUserInfo = SecurityHelper.DecryptUserInfo(strUserInfo);
                     int userId = int.Parse(strUserInfo);
                     var usr = _accountService.GetById(userId);
-                    Usr = usr;
+                    LoginUser = usr;
                 }
             }
             return true;
@@ -148,6 +148,14 @@ namespace QASystem.Web.Helper
             JsonResult res = new JsonResult();
             res.Data = ajax;
             return res;
+        }
+
+        internal void LoginOff()
+        {
+            if (Request.Cookies[InfoKey] != null)
+                Response.Cookies.Remove(InfoKey);
+            if (LoginUser != null)
+                LoginUser = null;
         }
     }
 }

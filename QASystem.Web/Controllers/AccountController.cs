@@ -16,7 +16,6 @@ using QASystem.Web.Attributes;
 
 namespace QASystem.Web.Controllers
 {
-    [Authorize]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -60,8 +59,7 @@ namespace QASystem.Web.Controllers
 
         //
         // GET: /Account/Login
-        [AllowAnonymous]
-        [Skip]
+        [LoginSkip]
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
@@ -71,9 +69,8 @@ namespace QASystem.Web.Controllers
         //
         // POST: /Account/Login
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        [Skip]
+        [LoginSkip]
         public ActionResult Login(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
@@ -154,7 +151,7 @@ namespace QASystem.Web.Controllers
         //
         // GET: /Account/Register
         [AllowAnonymous]
-        [Skip]
+        [LoginSkip]
         public ActionResult Register()
         {
             return View();
@@ -165,7 +162,7 @@ namespace QASystem.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        [Skip]
+        [LoginSkip]
         public ActionResult Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
@@ -428,8 +425,9 @@ namespace QASystem.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            //AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            OperateContext.Current.LoginOff();
+            return RedirectToAction(actionName: "Index", controllerName: "Question", routeValues: null);
         }
 
         //

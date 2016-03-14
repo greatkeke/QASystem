@@ -15,8 +15,8 @@ namespace QASystem.Web.Filter
         {
 
             //检查 被请求的 方法 和 控制器是否有 Skip 标签，如果有，则不验证；如果没有，则验证
-            if (!filterContext.ActionDescriptor.IsDefined(typeof(Attributes.SkipAttribute), false) &&
-                !filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(typeof(Attributes.SkipAttribute), false))
+            if (!filterContext.ActionDescriptor.IsDefined(typeof(Attributes.LoginSkipAttribute), false) &&
+                !filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(typeof(Attributes.LoginSkipAttribute), false))
             {
                 //1.验证用户是否登陆(Session && Cookie)
                 if (!OperateContext.Current.IsLogin())
@@ -24,6 +24,7 @@ namespace QASystem.Web.Filter
                     filterContext.Result = OperateContext.Current.Redirect("/Account/Login", filterContext.ActionDescriptor);
                 }
             }
+            //base.OnAuthorization(filterContext);
         }
     }
 }

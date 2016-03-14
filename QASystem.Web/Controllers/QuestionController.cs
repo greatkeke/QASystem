@@ -23,7 +23,7 @@ namespace QASystem.Web.Controllers
             return View();
         }
         [HttpGet]
-        [Skip]
+        [LoginSkip]
         public ActionResult Index()
         {
             ViewBag.Questions = _questionService.NewestList(0, 25);

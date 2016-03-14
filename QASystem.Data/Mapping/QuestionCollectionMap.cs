@@ -9,7 +9,7 @@ namespace QASystem.Data.Mapping
         {
             this.ToTable("QuestionCollection");
             this.HasRequired(u => u.Question).WithMany().HasForeignKey(u => u.QuestionId).WillCascadeOnDelete();
-            this.HasRequired(u => u.Collector).WithMany().HasForeignKey(u => u.userId).WillCascadeOnDelete();
+            this.HasRequired(u => u.Collector).WithMany().HasForeignKey(u => u.CollectorId).WillCascadeOnDelete();
 
         }
     }

@@ -14,7 +14,7 @@ namespace QASystem.Web.Controllers
         }
 
         [ChildActionOnly]
-        [Skip]
+        [LoginSkip]
         public PartialViewResult List()
         {
             //获取所有的分类

@@ -8,6 +8,7 @@ using QASystem.Service.TopicService;
 using System.Reflection;
 using System.Web.Mvc;
 using QASystem.Service.AccountService;
+using QASystem.Service.UserService;
 
 namespace QASystem.Web.Infrastructure
 {
@@ -21,7 +22,7 @@ namespace QASystem.Web.Infrastructure
             builder.Register<IUnitOfWork>(a => new QASystemDbContext("QASystemDb")).InstancePerLifetimeScope();
             builder.RegisterGeneric(typeof(EfRepository<>)).As(typeof(IRepository<>));
             //类型注入
-            //builder.RegisterType<UserService>().As<IUserService>();
+            builder.RegisterType<UserService>().As<IUserService>();
             builder.RegisterType<SubjectService>().As<ISubjectService>();
             builder.RegisterType<QuestionService>().As<IQuestionService>();
             builder.RegisterType<TopicService>().As<ITopicService>();

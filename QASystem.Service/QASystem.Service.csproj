@@ -51,6 +51,8 @@
     <Compile Include="QuestionService\QuestionService.cs" />
     <Compile Include="TopicService\ITopicService.cs" />
     <Compile Include="TopicService\TopicService.cs" />
+    <Compile Include="UserService\IUserService.cs" />
+    <Compile Include="UserService\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\QASystem.Core\QASystem.Core.csproj">

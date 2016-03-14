@@ -8,7 +8,7 @@ namespace QASystem.Data.Mapping
         public TopicCollectionMap()
         {
             this.ToTable("TopicCollection");
-            this.HasRequired(u => u.Collector).WithMany().HasForeignKey(u => u.UserId).WillCascadeOnDelete();
+            this.HasRequired(u => u.Collector).WithMany().HasForeignKey(u => u.CollectorId).WillCascadeOnDelete();
             this.HasRequired(u => u.Topic).WithMany().HasForeignKey(u => u.TopicId).WillCascadeOnDelete();
         }
     }
