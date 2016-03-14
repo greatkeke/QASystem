@@ -11,11 +11,13 @@ namespace QASystem.Service.QuestionService
     {
         private IUnitOfWork _uow;
         private IRepository<Question> _questionRepository;
+        private IRepository<Topic> _topicRepository;
 
-        public QuestionService(IUnitOfWork uow, IRepository<Question> questionRepository)
+        public QuestionService(IUnitOfWork uow, IRepository<Question> questionRepository, IRepository<Topic> topicRepository)
         {
             _uow = uow;
             _questionRepository = questionRepository;
+            _topicRepository = topicRepository;
         }
 
         public IEnumerable<Question> ListSortbyVote(DateTime start)
@@ -24,10 +26,19 @@ namespace QASystem.Service.QuestionService
             return _questionRepository.Table.Where(u => u.DateEndUtc > start).ToList();
         }
 
-        public bool Add(Question question)
+        public Question Add(Question question)
         {
-            _questionRepository.Insert(question);
-            return _uow.SaveChanges() > 0;
+            //当前主题下的该话题是否存在
+            var topic = _topicRepository.Table.FirstOrDefault(u => u.Name == question.Topic.Name && u.SubjectId == u.SubjectId);
+            if (topic != null)
+            {
+                question.Topic = topic;
+                question.Topic.num++;//该话题下的问题数+1
+            }
+
+            var res = _questionRepository.Insert(question);
+            _uow.SaveChanges();
+            return res;
         }
 
         public IPagedList<QuestionDto> NewestList(int pageIndex, int pageSize)
@@ -46,6 +57,11 @@ namespace QASystem.Service.QuestionService
                 Votes = u.Votes
             });
             return new PagedList<QuestionDto>(query, pageIndex, pageSize);
+        }
+
+        public Question GetById(int id)
+        {
+            return _questionRepository.GetById(id);
         }
     }
 }

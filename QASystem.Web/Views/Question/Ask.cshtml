@@ -1,0 +1,52 @@
+﻿@model QASystem.Web.Models.QuestionViewModel
+@{
+    ViewBag.Title = "提问";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="row"><h1>一个深思熟虑过的问题，会得到良好的响应。</h1></div>
+    <div style="padding: 20px 20px 10px 0px;">
+        @using (Html.BeginForm("New", "Question", FormMethod.Post, new { @class = "bs-example bs-example-form", role = "form" }))
+        {
+            <div class="input-group">
+                @Html.HiddenFor(u => u.StartUtc)
+                @Html.HiddenFor(u => u.AuthorId)
+                <span class="input-group-addon">标题</span>
+                @Html.TextBoxFor(u => u.Title, new { name = "title", @class = "form-control", placeholder = "简明扼要" })
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-1">
+                    <h3><span class="label label-default" style="padding-left:0px">主题</span></h3>
+                </div>
+                <div class="col-sm-1">@Html.DropDownList("subjectId", (IEnumerable<SelectListItem>)ViewBag.SubjectItems)</div>
+                <div class="col-sm-6 input-group">
+                    <span class="input-group-addon">话题</span>
+                    @*todo:根据输入自动匹配话题*@
+                    @Html.TextBoxFor(u => u.TopicStr, new { name = "topic", @class = "form-control" })
+                </div>
+
+            </div>
+            <br />
+            <div class="row" style="padding-left:15px">
+                <!-- 加载编辑器的容器 -->
+                <script id="container" name="content" type="text/plain">
+                </script>
+            </div>
+            <br />
+            <input class="form-control" type="submit" value="保存" />
+        }
+    </div>
+</div>
+
+<!-- 配置文件 -->
+<script type="text/javascript" src="~/UEditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="~/UEditor/ueditor.all.min.js"></script>
+<!-- 实例化编辑器 -->
+<script type="text/javascript">
+    var ue = UE.getEditor('container', {
+        autoHeight: true
+    });
+</script>
+

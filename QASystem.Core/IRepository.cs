@@ -16,10 +16,11 @@ namespace QASystem.Core
         T GetById(object id);
 
         /// <summary>
-        /// Insert entity
+        /// 新增一个实体
         /// </summary>
-        /// <param name="entity">Entity</param>
-        void Insert(T entity);
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        T Insert(T entity);
 
         /// <summary>
         /// Insert entities

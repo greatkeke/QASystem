@@ -3,7 +3,6 @@
     var userVM = ViewBag.UserViewModel as UserViewModel;
     if (userVM == null)
     {
-        @*头像和name*@
         <div class="row">
             <button class="btn-success">现在登陆</button>
         </div>
@@ -34,7 +33,10 @@
     }
     @*提问*@
     <div class="row">
-        <button class="btn btn-info">提问</button>
+        <button onclick="ask" class="btn btn-info">提问</button>
     </div>
     <div class="row"><ul /></div>
 }
+@section scripts{
+    <script src="~/Scripts/QAScript/AskQuestion.js"></script>
+    }

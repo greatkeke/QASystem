@@ -23,6 +23,7 @@ namespace QASystem.Service.QuestionService
         /// <returns></returns>
         IPagedList<QuestionDto> NewestList(int pageIndex,int pageSize);
 
-        bool Add(Question question);
+        Question Add(Question question);
+        Question GetById(int id);
     }
 }

@@ -1,0 +1,23 @@
+﻿@model QASystem.Web.Models.QuestionViewModel
+
+@{
+    ViewBag.Title = "问题详细";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a href="#">@Model.SubjectStr</a></li>
+        <li><a href="#" class="active">@Model.TopicStr</a></li>
+    </ol>
+</div>
+
+<div>
+    <h4>@Model.Title</h4>
+    <div class="row">
+        <div class="col-sm-1">赞|踩</div>
+        <div class="col-sm-1">@Model.AuthorStr</div>
+        <div class="col-sm-2">@TimeZoneInfo.ConvertTimeFromUtc(Model.EndUtc, TimeZoneInfo.Local)</div>
+    </div>
+    <hr />
+    @Html.Raw(Model.Content);
+</div>

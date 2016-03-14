@@ -65,14 +65,14 @@ namespace QASystem.Data
         /// Insert entity
         /// </summary>
         /// <param name="entity">Entity</param>
-        public virtual void Insert(T entity)
+        public virtual T Insert(T entity)
         {
             try
             {
                 if (entity == null)
                     throw new ArgumentNullException("entity");
 
-                this.Entities.Add(entity);
+                return this.Entities.Add(entity);
 
                 //this._context.SaveChanges();
             }
