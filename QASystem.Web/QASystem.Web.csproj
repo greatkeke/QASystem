@@ -227,7 +227,9 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="ErrorPage.htm" />
     <Content Include="favicon.ico" />
+    <Content Include="FileNotFound.htm" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -532,9 +534,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -555,9 +554,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\KnockOut\Index.cshtml" />
-    <Content Include="Views\KnockOut\ContactList.cshtml" />
-    <Content Include="Views\KnockOut\Demo3.cshtml" />
     <Content Include="Views\Subject\List.cshtml" />
     <Content Include="Views\Question\Index.cshtml" />
     <Content Include="Views\User\UserView.cshtml" />
@@ -593,6 +589,10 @@
     <Content Include="Scripts\jquery-2.2.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\QASystem.CommonHelper\QASystem.CommonHelper.csproj">
+      <Project>{04e0c3dd-99e1-4323-8ada-8f8533d260f3}</Project>
+      <Name>QASystem.CommonHelper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\QASystem.Core\QASystem.Core.csproj">
       <Project>{bc225047-aeb8-4852-966c-c09dc59f728b}</Project>
       <Name>QASystem.Core</Name>

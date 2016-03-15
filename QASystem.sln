@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QASystem.Service", "QASyste
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QASystem.ServiceTests", "QASystem.ServiceTests\QASystem.ServiceTests.csproj", "{4BD9D940-0FD9-471A-A0E4-0AD9B061BBE7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QASystem.CommonHelper", "QASystem.CommonHelper\QASystem.CommonHelper.csproj", "{04E0C3DD-99E1-4323-8ADA-8F8533D260F3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{4BD9D940-0FD9-471A-A0E4-0AD9B061BBE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BD9D940-0FD9-471A-A0E4-0AD9B061BBE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4BD9D940-0FD9-471A-A0E4-0AD9B061BBE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04E0C3DD-99E1-4323-8ADA-8F8533D260F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04E0C3DD-99E1-4323-8ADA-8F8533D260F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04E0C3DD-99E1-4323-8ADA-8F8533D260F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04E0C3DD-99E1-4323-8ADA-8F8533D260F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,5 +61,6 @@ Global
 		{FF8C3F1A-04A9-4775-A356-4D9E5BB1ADE8} = {362FAFB1-650D-4456-B8A9-710C8F3643D3}
 		{A15498F6-6CB7-41AF-8549-073BE6C1B530} = {BF6627CA-E920-4E42-B5E8-B1A60BCB34F1}
 		{4BD9D940-0FD9-471A-A0E4-0AD9B061BBE7} = {2C61DEE9-FD00-482D-B6FC-0BB4DAF8A20E}
+		{04E0C3DD-99E1-4323-8ADA-8F8533D260F3} = {BF6627CA-E920-4E42-B5E8-B1A60BCB34F1}
 	EndGlobalSection
 EndGlobal
