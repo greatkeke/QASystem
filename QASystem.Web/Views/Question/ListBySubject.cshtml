@@ -1,0 +1,104 @@
+﻿@model QASystem.Web.Models.QuestionListViewModel
+
+@{
+    ViewBag.Title = "热门问题";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="row" id="head"><h1>知无不言言无不尽</h1></div>
+    <div class="row">
+        <div class="col-lg-9">
+            @*热门话题*@
+            <div class="row">
+                <h3>热门话题</h3>
+            </div>
+            @*话题*@
+            <div class="row">
+                @Html.Action("HotTopics", "Topic")
+            </div>
+            <div class="row"><hr /></div>
+            @*问题列表*@
+            @{
+                foreach (var question in Model.QuestionList)
+                {
+                    <div class="row">
+                        <div class="col-sm-1"><span class="glyphicon glyphicon-thumbs-up"></span>@question.Votes</div>
+                        <div class="col-sm-11">
+                            <div class="row">@Html.ActionLink(linkText: question.Title, actionName: "Details", routeValues: new { question.Id }, htmlAttributes: new { @class = "text-primary" })</div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    @{
+                                        <button class="btn btn-info btn-xs">@question.Topic.Name</button>
+                                    }
+                                </div>
+                                <div class="col-sm-4">
+                                    <span class="label label-success">@question.Author.Username</span>
+                                </div>
+                                <div class="col-sm-4">
+                                    <span class="label label-success">@question.DateEnd</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row"><hr /></div>
+                                        }
+            }
+            @*分页*@
+            <div>
+                <ul class="pagination">
+                    @*页数百分比*@
+                    <li><a>@(Model.QuestionList.PageIndex+1) / @Model.QuestionList.TotalPages</a></li>
+                    @*上一页*@
+                    @if (!Model.QuestionList.HasPreviousPage)
+                    {
+                        <li class="disabled"><a href="#">&laquo;</a></li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("<<", "ListBySubject", "Question", new { id = Model.SubjectId, pageIndex = Model.QuestionList.PageIndex - 1, pageSize = Model.QuestionList.PageSize }, null)</li>
+                    }
+                    @*是否显示…*@
+                    @{var spitindex = Model.QuestionList.PageIndex - 2;}
+                    @if (spitindex>4)
+                    {
+                        <li>@Html.ActionLink("1", "ListBySubject", "Question", new { id = Model.SubjectId, pageIndex = 1, pageSize = Model.QuestionList.PageSize }, null)</li>
+                        <li>@Html.ActionLink("…", "ListBySubject", "Question", new { id = Model.SubjectId, pageIndex = spitindex-2, pageSize = Model.QuestionList.PageSize }, null)</li>
+                    }
+                    @*显示中间*@
+                    @for (int i = Model.QuestionList.PageIndex-2; i < Model.QuestionList.PageIndex; i++)
+                    {
+                        if(i>= Model.QuestionList.PageIndex || i < 0) { continue; }
+                        <li>@Html.ActionLink((i+1).ToString(), "ListBySubject", "Question", new { id = Model.SubjectId, pageIndex = i, pageSize = Model.QuestionList.PageSize }, null)</li>
+                    }
+                    @*选中的页*@
+                    <li class="active">@Html.ActionLink((Model.QuestionList.PageIndex+1).ToString(), "ListBySubject", "Question", new { id = Model.SubjectId, pageIndex = Model.QuestionList.PageIndex, pageSize = Model.QuestionList.PageSize }, null)</li>
+                    @*后半段*@
+                    @for (int i = Model.QuestionList.PageIndex+1; i < Model.QuestionList.TotalPages; i++)
+                    {
+                        if (i >= Model.QuestionList.PageIndex + 3) { break; }
+                        <li>@Html.ActionLink((i + 1).ToString(), "ListBySubject", "Question", new { id = Model.SubjectId, pageIndex = i, pageSize = Model.QuestionList.PageSize }, null)</li>
+                    }
+                    @*后两页*@
+                    @{ spitindex = Model.QuestionList.PageIndex + 3;}
+                    @if(Model.QuestionList.TotalPages-4>spitindex)
+                    {
+                        <li>@Html.ActionLink("…", "ListBySubject", "Question", new { id = Model.SubjectId, pageIndex = spitindex + 2, pageSize = Model.QuestionList.PageSize }, null)</li>
+                        <li>@Html.ActionLink(Model.QuestionList.TotalPages.ToString(), "ListBySubject", "Question", new { id = Model.SubjectId, pageIndex = Model.QuestionList.TotalPages-1, pageSize = Model.QuestionList.PageSize }, null)</li>
+                    }
+                    @*下一页*@
+                    @if (!Model.QuestionList.HasNextPage)
+                    {
+                        <li class="disabled"><a href="#">&raquo;</a></li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink(">>", "ListBySubject", "Question", new { id = Model.SubjectId, pageIndex = Model.QuestionList.PageIndex + 1, pageSize = Model.QuestionList.PageSize }, null)</li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            @{ Html.RenderAction("UserView", "User");}
+        </div>
+    </div>
+</div>

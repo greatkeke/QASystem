@@ -24,6 +24,7 @@ namespace QASystem.Service.QuestionService
         IPagedList<QuestionDto> NewestList(int pageIndex,int pageSize);
 
         Question Add(Question question);
-        Question GetById(int id);
+        Question GetByIdNoTracking(int id);
+        IPagedList<QuestionDto> ListBySubject(int id, int pageIndex, int pageSize);
     }
 }

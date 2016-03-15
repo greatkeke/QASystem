@@ -208,6 +208,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ModelExtensions.cs" />
+    <Compile Include="Models\QuestionListViewModel.cs" />
     <Compile Include="Models\QuestionViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -572,11 +573,12 @@
     <Content Include="Views\Question\Details.cshtml" />
     <Content Include="Views\Answer\New.cshtml" />
     <Content Include="Views\Topic\HotTopics.cshtml" />
+    <Content Include="Views\Question\ListBySubject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\QAScript\" />
-    <Folder Include="UEditor\net\upload\image\20160314\" />
+    <Folder Include="UEditor\net\upload\image\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

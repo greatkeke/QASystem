@@ -1,6 +1,7 @@
 ﻿using QASystem.Core;
 using QASystem.Core.Domain;
 using System;
+using System.Linq;
 
 namespace QASystem.Service.AnswerService
 {
@@ -27,10 +28,9 @@ namespace QASystem.Service.AnswerService
             var res = _answerRepository.Insert(answer);
             if (_uow.SaveChanges() > 0)
             {
-                res.Author = _answerRepository.GetById(res.Id).Author;
-                return res;
+                res = _answerRepository.TableNoTracking.FirstOrDefault(u => u.Id == res.Id);
             }
-            return null;
+            return res ?? null;
         }
     }
 }

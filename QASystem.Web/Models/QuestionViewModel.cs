@@ -4,6 +4,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace QASystem.Web.Models
 {
+    /// <summary>
+    /// 问题详情-视图模型
+    /// </summary>
     public class QuestionViewModel
     {
         public int Id { get; set; }

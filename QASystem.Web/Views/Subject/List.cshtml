@@ -2,6 +2,6 @@
 @{
     foreach (Subject sub in ViewBag.Cates)
     {
-        <li>@Html.ActionLink(linkText: sub.Name, actionName: "Subject", controllerName: "Question", routeValues: new { subjectId = sub.Id }, htmlAttributes: null)</li>
+        <li>@Html.ActionLink(linkText: sub.Name, actionName: "ListBySubject", controllerName: "Question", routeValues: new { sub.Id }, htmlAttributes: null)</li>
     }
 }

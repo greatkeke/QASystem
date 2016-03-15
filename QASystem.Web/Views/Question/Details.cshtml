@@ -56,7 +56,8 @@
         {
             UpdateTargetId = "MyNewAnswer",
             HttpMethod = "Post",
-            InsertionMode = InsertionMode.Replace
+            InsertionMode = InsertionMode.Replace,
+            LoadingElementId = "Loading",
         }))
         {
             @Html.Hidden("QuestionId", Model.Id)
@@ -65,7 +66,7 @@
                 @Html.ScriptFor("NewAnswerContent", "认真对待别人其实是对自己的负责")
             </div>
             <br />
-            <input type="submit" value="回答" />
+            <input type="submit" value="回答" /><div id="Loading" style="display:none;color:red">正在提交，请稍候……</div>
         }
     </div>
 </div>

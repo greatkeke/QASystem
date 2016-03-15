@@ -4,6 +4,7 @@ using QASystem.Core.Domain;
 using QASystem.Core;
 using System.Linq;
 using QASystem.Core.DTOModels;
+using System.Threading.Tasks;
 
 namespace QASystem.Service.QuestionService
 {
@@ -39,34 +40,58 @@ namespace QASystem.Service.QuestionService
             var res = _questionRepository.Insert(question);
             if (_uow.SaveChanges() > 0)
             {
-                res.Author = _questionRepository.GetById(res.Id).Author;
-                res.Answers = _questionRepository.GetById(res.Id).Answers;
-                res.Topic = _questionRepository.GetById(res.Id).Topic;
+                res = _questionRepository.TableNoTracking.FirstOrDefault(u => u.Id == res.Id);
             }
-            return null;
+            return res ?? null;
         }
 
         public IPagedList<QuestionDto> NewestList(int pageIndex, int pageSize)
         {
-            var query = _questionRepository.Table.OrderByDescending(u => u.Id).Where(u => u.Status > (int)QuestionStatus.Created && u.Status < (int)QuestionStatus.Deleted).Select(u => new QuestionDto()
-            {
-                Id = u.Id,
-                Title = u.Title,
-                DateEndUtc = u.DateEndUtc,
-                DateStartUtc = u.DateEndUtc,
-                AuthorId = u.AuthorId,
-                Author = u.Author,
-                Status = u.Status,
-                Topic = u.Topic,
-                TopicId = u.TopicId,
-                Votes = u.Votes
-            });
+            var query = _questionRepository.Table
+                .OrderByDescending(u => u.Id)//按照发布顺序排序
+                .Where(u => u.Status > (int)QuestionStatus.Created && u.Status < (int)QuestionStatus.Deleted)//状态
+                .Select(u => new QuestionDto()//按需索取
+                {
+                    Id = u.Id,
+                    Title = u.Title,
+                    DateEndUtc = u.DateEndUtc,
+                    DateStartUtc = u.DateEndUtc,
+                    AuthorId = u.AuthorId,
+                    Author = u.Author,
+                    Status = u.Status,
+                    Topic = u.Topic,
+                    TopicId = u.TopicId,
+                    Votes = u.Votes
+                });
             return new PagedList<QuestionDto>(query, pageIndex, pageSize);
         }
 
-        public Question GetById(int id)
+        public Question GetByIdNoTracking(int id)
         {
-            return _questionRepository.GetById(id);
+            return _questionRepository.TableNoTracking.FirstOrDefault(u => u.Id == id);
+        }
+
+        public IPagedList<QuestionDto> ListBySubject(int id, int pageIndex, int pageSize)
+        {
+            var query = _questionRepository.Table
+                .OrderByDescending(u => u.Votes)//按照热度降序排序
+                .OrderByDescending(u => u.DateEndUtc)//日期次之
+                .Where(u => u.Status > (int)QuestionStatus.Created && u.Status < (int)QuestionStatus.Deleted)//状态
+                .Where(u => id <= 0 || u.Topic.SubjectId == id)//主题编号小于0时，查找所有主题
+                .Select(u => new QuestionDto()//按需索取
+                {
+                    Id = u.Id,
+                    Title = u.Title,
+                    DateEndUtc = u.DateEndUtc,
+                    DateStartUtc = u.DateEndUtc,
+                    AuthorId = u.AuthorId,
+                    Author = u.Author,
+                    Status = u.Status,
+                    Topic = u.Topic,
+                    TopicId = u.TopicId,
+                    Votes = u.Votes
+                });
+            return new PagedList<QuestionDto>(query, pageIndex, pageSize);
         }
     }
 }

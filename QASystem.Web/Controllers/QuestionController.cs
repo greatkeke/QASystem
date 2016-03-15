@@ -8,6 +8,8 @@ using QASystem.Web.Helper;
 using QASystem.Web.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace QASystem.Web.Controllers
@@ -27,10 +29,18 @@ namespace QASystem.Web.Controllers
 
         [HttpGet]
         [LoginSkip]
-        public ActionResult Index()
+        public string Index()
         {
-            ViewBag.Questions = _questionService.NewestList(0, 25);
-            return View();
+            var questions = _questionService.ListBySubject(0, 0, 2);
+            using (var sw = new StringWriter())
+            {
+                ViewData.Model = new QuestionListViewModel(questions, 0);
+                var viewResult = ViewEngines.Engines.FindView(ControllerContext, "ListBySubject", "_Layout");
+                var viewContext = new ViewContext(ControllerContext, viewResult.View, ViewData, TempData, sw);
+                viewResult.View.Render(viewContext, sw);
+                return sw.GetStringBuilder().ToString();
+            }
+
         }
 
 
@@ -78,17 +88,32 @@ namespace QASystem.Web.Controllers
             if (res == null)
             {
                 //返回提问页面
-                return Ask(questionVM);
+                return RedirectToAction("Ask", questionVM);
             }
             //去问题详细页面
-            return Details(res.Id);
+            return RedirectToAction("Details", new { id = res.Id });
         }
 
         [LoginSkip]
         public ActionResult Details(int id)
         {
-            var questionVM = _questionService.GetById(id).ToViewModel();
+            var questionVM = _questionService.GetByIdNoTracking(id).ToViewModel();
             return View(questionVM);
+        }
+
+        /// <summary>
+        /// 展示该subject下的问题
+        /// </summary>
+        /// <param name="id">主题编号</param>
+        /// <param name="pageSize"></param>
+        /// <param name="pageIndex"></param>
+        /// <returns></returns>
+        [LoginSkip]
+        public ActionResult ListBySubject(int id, int pageIndex = 0, int pageSize = 5)
+        {
+            var questionListVM = new QuestionListViewModel(_questionService.ListBySubject(id, pageIndex, pageSize), id);
+            return View(questionListVM);
+
         }
     }
 }
