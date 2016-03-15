@@ -21,6 +21,11 @@ namespace QASystem.Service.TopicService
         {
             return _topicRepository.Table.ToList();
         }
+
+        public IEnumerable<Topic> GetHotTopics()
+        {
+            return _topicRepository.Table.OrderByDescending(u => u.num).Take(5).ToList();
+        }
     }
 
 

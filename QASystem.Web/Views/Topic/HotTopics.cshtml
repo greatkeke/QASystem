@@ -1,0 +1,7 @@
+﻿@using QASystem.Core.Domain
+@{
+    foreach (var item in (IEnumerable<Topic>)ViewBag.Topics)
+    {
+        <span class="label-success">@item.Name</span>
+    }
+}

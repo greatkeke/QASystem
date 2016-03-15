@@ -13,11 +13,14 @@ namespace QASystem.Web.Controllers
             _subjectService = subjectService;
         }
 
+        /// <summary>
+        /// 所有主题
+        /// </summary>
+        /// <returns></returns>
         [ChildActionOnly]
         [LoginSkip]
         public PartialViewResult List()
         {
-            //获取所有的分类
             ViewBag.Cates = _subjectService.GetAll();
             return PartialView();
         }

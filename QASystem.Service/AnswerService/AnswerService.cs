@@ -8,13 +8,11 @@ namespace QASystem.Service.AnswerService
     {
         private IUnitOfWork _uow;
         private IRepository<Answer> _answerRepository;
-        private IRepository<User> _userRepository;
 
-        public AnswerService(IUnitOfWork uow, IRepository<Answer> answerRepository, IRepository<User> userRepository)
+        public AnswerService(IUnitOfWork uow, IRepository<Answer> answerRepository)
         {
             _uow = uow;
             _answerRepository = answerRepository;
-            _userRepository = userRepository;
         }
 
         public Answer Add(int questionId, string answerContent, int anthorId)
@@ -29,7 +27,7 @@ namespace QASystem.Service.AnswerService
             var res = _answerRepository.Insert(answer);
             if (_uow.SaveChanges() > 0)
             {
-                res.Author = _userRepository.GetById(res.AuthorId);
+                res.Author = _answerRepository.GetById(res.Id).Author;
                 return res;
             }
             return null;

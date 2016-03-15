@@ -464,11 +464,24 @@ namespace QASystem.Web.Controllers
 
         private ActionResult RedirectToLocal(string returnUrl)
         {
-            if (Url.IsLocalUrl(returnUrl))
+            string[] urls = returnUrl.Split('/');
+            if (urls.Count() == 1)
             {
-                return Redirect(returnUrl);
+                return RedirectToAction(urls[0]);
             }
-            return RedirectToAction("Index", "Home");
+            else if (urls.Count() >= 2)
+            {
+                return RedirectToAction(actionName: urls[1], controllerName: urls[0]);
+            }
+            else
+            {
+                return RedirectToAction("");
+            }
+            //if (Url.IsLocalUrl(returnUrl))
+            //{
+            //    return Redirect(returnUrl);
+            //}
+            //return RedirectToAction("/");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

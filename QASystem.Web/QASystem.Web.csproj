@@ -192,6 +192,7 @@
     <Compile Include="Controllers\AnswerController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
+    <Compile Include="Controllers\TopicController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filter\LoginValidateAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -234,6 +235,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.2.1.js" />
     <Content Include="Scripts\jquery-2.2.1.min.js" />
+    <None Include="Properties\PublishProfiles\QASystem.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
@@ -244,7 +246,6 @@
     <Content Include="Scripts\knockout-3.4.0.debug.js" />
     <Content Include="Scripts\knockout-3.4.0.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\QAScript\AskQuestion.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
@@ -570,9 +571,11 @@
     <Content Include="UEditor\net\Web.config" />
     <Content Include="Views\Question\Details.cshtml" />
     <Content Include="Views\Answer\New.cshtml" />
+    <Content Include="Views\Topic\HotTopics.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\QAScript\" />
     <Folder Include="UEditor\net\upload\image\20160314\" />
   </ItemGroup>
   <ItemGroup>

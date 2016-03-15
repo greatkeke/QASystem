@@ -5,7 +5,6 @@ namespace QASystem.Web.Helper
 {
     public class SecurityHelper
     {
-        #region 1.0 使用 票据对象 将 用户数据 加密成字符串 +string EncryptUserInfo(string userInfo)
         /// <summary>
         /// 使用 票据对象 将 用户数据 加密成字符串
         /// </summary>
@@ -19,11 +18,9 @@ namespace QASystem.Web.Helper
             string strData = FormsAuthentication.Encrypt(ticket);
             return strData;
         }
-        #endregion
 
-        #region 2.0 加密字符串 解密 +string DecryptUserInfo(string cryptograph)
         /// <summary>
-        /// 加密字符串 解密
+        /// 解密
         /// </summary>
         /// <param name="cryptograph">加密字符串</param>
         /// <returns></returns>
@@ -34,6 +31,5 @@ namespace QASystem.Web.Helper
             //1.2 将票据里的 用户数据 返回
             return ticket.UserData;
         }
-        #endregion
     }
 }

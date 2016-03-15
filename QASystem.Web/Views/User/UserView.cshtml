@@ -1,42 +1,41 @@
 ﻿@using QASystem.Web.Models
-@{
-    var userVM = ViewBag.UserViewModel as UserViewModel;
-    if (userVM == null)
-    {
-        <div class="row">
-            <button class="btn-success">现在登陆</button>
-        </div>
-        <div class="row"><ul></ul></div>
-    }
-    else
-    {
-        @*头像和name*@
-        <div class="row">
-            @Html.ActionLink(userVM.Username ?? "无名氏", "Show", new { Id = userVM.Id })
-        </div>
-        @*问题收藏|话题收藏|特别关注*@
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="row">@userVM.QuestionCollectionCount</div>
-                <div class="row">问题收藏</div>
+<div style="padding-left:10px">
+    @{
+        var userVM = ViewBag.UserViewModel as UserViewModel;
+        if (userVM == null)
+        {
+            <div class="row">
+                <h1><span class="label label-success">@Html.ActionLink("现在登录", "Login", "Account", routeValues: new { returnUrl = "/Question/Index" }, htmlAttributes: new { id = "loginLink" })</span></h1>
             </div>
-            <div class="col-sm-4">
-                <div class="row">@userVM.TopicCollectionCount</div>
-                <div class="row">话题收藏</div>
+            <br />
+        }
+        else
+        {
+            @*头像和name*@
+            <div class="row">
+                <h2><span class="label label-warning">@userVM.Username</span></h2>
             </div>
-            <div class="col-sm-4">
-                <div class="row">@userVM.UserCollectionCount</div>
-                <div class="row">特别关注</div>
+            @*问题收藏|话题收藏|特别关注*@
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="row">@userVM.QuestionCollectionCount</div>
+                    <div class="row">问题收藏</div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="row">@userVM.TopicCollectionCount</div>
+                    <div class="row">话题收藏</div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="row">@userVM.UserCollectionCount</div>
+                    <div class="row">特别关注</div>
+                </div>
             </div>
+            <br />
+        }
+        @*提问*@
+        <div class="row">
+            <h1><span class="label label-success">@Html.ActionLink(linkText: "提问", actionName: "Ask", controllerName: "Question")</span></h1>
         </div>
-        <div class="row"><ul /></div>
+        <br />
     }
-    @*提问*@
-    <div class="row">
-        <button onclick="ask" class="btn btn-info">提问</button>
-    </div>
-    <div class="row"><ul /></div>
-}
-@section scripts{
-    <script src="~/Scripts/QAScript/AskQuestion.js"></script>
-    }
+</div>

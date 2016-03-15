@@ -153,7 +153,7 @@ namespace QASystem.Web.Helper
         internal void LoginOff()
         {
             if (Request.Cookies[InfoKey] != null)
-                Response.Cookies.Remove(InfoKey);
+                Response.Cookies[InfoKey].Expires = DateTime.Now;
             if (LoginUser != null)
                 LoginUser = null;
         }

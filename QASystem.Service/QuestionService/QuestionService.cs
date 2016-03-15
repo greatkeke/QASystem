@@ -37,8 +37,13 @@ namespace QASystem.Service.QuestionService
             }
 
             var res = _questionRepository.Insert(question);
-            _uow.SaveChanges();
-            return res;
+            if (_uow.SaveChanges() > 0)
+            {
+                res.Author = _questionRepository.GetById(res.Id).Author;
+                res.Answers = _questionRepository.GetById(res.Id).Answers;
+                res.Topic = _questionRepository.GetById(res.Id).Topic;
+            }
+            return null;
         }
 
         public IPagedList<QuestionDto> NewestList(int pageIndex, int pageSize)
