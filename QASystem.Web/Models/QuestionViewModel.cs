@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace QASystem.Web.Models
@@ -11,11 +12,13 @@ namespace QASystem.Web.Models
         public int TopicId { get; set; }
         public string TopicStr { get; set; }
         public string Content { get; set; }
-        public DateTime StartUtc { get; set; }
-        public DateTime EndUtc { get; set; }
-        public string AuthorStr { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public string AuthorName { get; set; }
         public int AuthorId { get; set; }
         public int SubjectId { get; set; }
-        public string SubjectStr { get; set; }
+        public string SubjectName { get; set; }
+        public string NewAnswerContent { get; set; }
+        public IEnumerable<AnswerViewModel> Answers { get; set; }
     }
 }

@@ -30,8 +30,9 @@
             <br />
             <div class="row" style="padding-left:15px">
                 <!-- 加载编辑器的容器 -->
-                <script id="container" name="content" type="text/plain">
-                </script>
+                @*<script id="container" name="content" type="text/plain">
+                    </script>*@
+                @Html.ScriptFor( "content", "详细内容")
             </div>
             <br />
             <input class="form-control" type="submit" value="保存" />

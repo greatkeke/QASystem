@@ -20,6 +20,10 @@ namespace QASystem.Web.Controllers
         {
             return View();
         }
+        /// <summary>
+        /// 用户信息展示
+        /// </summary>
+        /// <returns></returns>
         [ChildActionOnly]
         [LoginSkip]
         public PartialViewResult UserView()

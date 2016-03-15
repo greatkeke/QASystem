@@ -4,20 +4,78 @@
     ViewBag.Title = "问题详细";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script src="~/Scripts/jquery-2.2.1.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 <div class="row">
     <ol class="breadcrumb">
-        <li><a href="#">@Model.SubjectStr</a></li>
+        <li><a href="#">@Model.SubjectName</a></li>
         <li><a href="#" class="active">@Model.TopicStr</a></li>
     </ol>
 </div>
 
 <div>
+    @*标题*@
     <h4>@Model.Title</h4>
-    <div class="row">
-        <div class="col-sm-1">赞|踩</div>
-        <div class="col-sm-1">@Model.AuthorStr</div>
-        <div class="col-sm-2">@TimeZoneInfo.ConvertTimeFromUtc(Model.EndUtc, TimeZoneInfo.Local)</div>
-    </div>
     <hr />
+    @*内容*@
     @Html.Raw(Model.Content);
+    <div class="row well well-sm" style="margin-bottom:50px">
+        <div class="col-sm-1"><h6><span class="label label-success">赞 | 踩</span></h6></div>
+        <div class="col-sm-1"><h6><span class="label label-success">@Model.AuthorName</span></h6></div>
+        <div class="col-sm-1"><h6><span class="label label-success">收藏</span></h6></div>
+        <div class="col-sm-1"><h6><span class="label label-success">转发</span></h6></div>
+        <div class="col-sm-2"><h6><span class="label label-success">@Model.EndTime</span></h6></div>
+    </div>
+    <h3>回答列表</h3>
+    <hr />
+    @*回答*@
+    @{
+        int i = 1;
+        foreach (var answer in Model.Answers.OrderBy(u => u.CreateTime))
+        {
+            <div class="row">
+                <div class="col-sm-2"><span class="label label-warning">@i #</span> @Html.Label(answer.AuthorName)</div>
+                <div class="col-sm-2">@Html.Label(answer.CreateTime.ToString())</div>
+            </div>
+            <div class="row" style="padding-left:15px">@Html.Raw(answer.Content)</div>
+            <div class="row well well-sm">
+                <div class="col-sm-1"><h6><span class="label label-success">赞 | 踩</span></h6></div>
+                <div class="col-sm-1"><h6><span class="label label-success">评论</span></h6></div>
+                <div class="col-sm-1"><h6><span class="label label-success">收藏</span></h6></div>
+            </div>
+            <hr />
+            i = i + 1;
+        }
+    }
+    @*我的新回答*@
+    <div id="MyNewAnswer">
+    </div>
+    @*评论*@
+    <div class="row">
+        @using (Ajax.BeginForm("New", "Answer", new AjaxOptions()
+        {
+            UpdateTargetId = "MyNewAnswer",
+            HttpMethod = "Post",
+            InsertionMode = InsertionMode.Replace
+        }))
+        {
+            @Html.Hidden("QuestionId", Model.Id)
+
+            <div class="row" style="padding-left:15px">
+                @Html.ScriptFor("NewAnswerContent", "认真对待别人其实是对自己的负责")
+            </div>
+            <br />
+            <input type="submit" value="回答" />
+        }
+    </div>
 </div>
+<!-- 配置文件 -->
+<script type="text/javascript" src="~/UEditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="~/UEditor/ueditor.all.min.js"></script>
+<!-- 实例化编辑器 -->
+<script type="text/javascript">
+    var ue = UE.getEditor('container', {
+        autoHeight: true
+    });
+</script>

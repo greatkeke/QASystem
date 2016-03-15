@@ -50,7 +50,7 @@ namespace QASystem.Web.Controllers
                 questionVM = new QuestionViewModel()
                 {
                     AuthorId = OperateContext.Current.LoginUser.Id,
-                    StartUtc = DateTime.UtcNow
+                    StartTime = DateTime.UtcNow
                 };
             ViewBag.SubjectItems = subjectItems;
             return View(questionVM);
@@ -64,7 +64,7 @@ namespace QASystem.Web.Controllers
             var res = _questionService.Add(new Question()
             {
                 Title = questionVM.Title,
-                DateStartUtc = questionVM.StartUtc,
+                DateStartUtc = questionVM.StartTime,
                 DateEndUtc = DateTime.UtcNow,
                 Content = questionVM.Content,
                 Topic = new Topic()
@@ -87,21 +87,7 @@ namespace QASystem.Web.Controllers
         [LoginSkip]
         public ActionResult Details(int id)
         {
-            Question question = _questionService.GetById(id);
-            var questionVM = new QuestionViewModel()
-            {
-                AuthorId = question.AuthorId,
-                Content = question.Content,
-                EndUtc = question.DateEndUtc,
-                Id = question.Id,
-                StartUtc = question.DateStartUtc,
-                SubjectId = question.Topic.SubjectId,
-                SubjectStr = question.Topic.Subject.Name,
-                TopicStr = question.Topic.Name,
-                TopicId = question.TopicId,
-                Title = question.Title,
-                AuthorStr = question.Author.Username,
-            };
+            var questionVM = _questionService.GetById(id).ToViewModel();
             return View(questionVM);
         }
     }

@@ -189,9 +189,7 @@
     <Compile Include="Attributes\AjaxRequestAttribute.cs" />
     <Compile Include="Attributes\SkipAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\KnockOutController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\AnswerController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -205,8 +203,10 @@
     <Compile Include="Infrastructure\DependenceRegistrar.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AjaxMsgModel.cs" />
+    <Compile Include="Models\AnswerViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ModelExtensions.cs" />
     <Compile Include="Models\QuestionViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -235,6 +235,8 @@
     <Content Include="Scripts\jquery-2.2.1.js" />
     <Content Include="Scripts\jquery-2.2.1.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -567,6 +569,7 @@
     <Content Include="UEditor\net\README.md" />
     <Content Include="UEditor\net\Web.config" />
     <Content Include="Views\Question\Details.cshtml" />
+    <Content Include="Views\Answer\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

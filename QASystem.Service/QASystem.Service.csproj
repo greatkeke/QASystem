@@ -44,6 +44,8 @@
     <Compile Include="AccountService\AccountService.cs" />
     <Compile Include="AccountService\DataHelper.cs" />
     <Compile Include="AccountService\IAccountService.cs" />
+    <Compile Include="AnswerService\AnswerService.cs" />
+    <Compile Include="AnswerService\IAnswerService.cs" />
     <Compile Include="SubjectService\ISubjectService.cs" />
     <Compile Include="SubjectService\SubjectService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
