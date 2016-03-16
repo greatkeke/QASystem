@@ -17,7 +17,7 @@ namespace QASystem.Web.Models
                 StartTime = TimeZoneInfo.ConvertTimeFromUtc(question.DateStartUtc, TimeZoneInfo.Local),
                 SubjectId = question.Topic.SubjectId,
                 SubjectName = question.Topic.Subject.Name,
-                TopicStr = question.Topic.Name,
+                TopicName = question.Topic.Name,
                 TopicId = question.TopicId,
                 Title = question.Title,
                 AuthorName = question.Author.Username,

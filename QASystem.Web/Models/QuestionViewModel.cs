@@ -13,7 +13,9 @@ namespace QASystem.Web.Models
         [Required]
         public string Title { get; set; }
         public int TopicId { get; set; }
-        public string TopicStr { get; set; }
+        [Required]
+        public string TopicName { get; set; }
+        [Required]
         public string Content { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }

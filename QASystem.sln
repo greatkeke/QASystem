@@ -21,6 +21,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QASystem.ServiceTests", "QA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QASystem.CommonHelper", "QASystem.CommonHelper\QASystem.CommonHelper.csproj", "{04E0C3DD-99E1-4323-8ADA-8F8533D260F3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{39508337-28F6-4AEB-B0C8-01007FA014BA}"
+	ProjectSection(SolutionItems) = preProject
+		QASystem功能设计.doc = QASystem功能设计.doc
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

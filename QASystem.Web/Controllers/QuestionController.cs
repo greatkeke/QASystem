@@ -31,7 +31,7 @@ namespace QASystem.Web.Controllers
         [LoginSkip]
         public string Index()
         {
-            var questions = _questionService.ListBySubject(0, 0, 2);
+            var questions = _questionService.ListBySubject(0, 0, 15);
             using (var sw = new StringWriter())
             {
                 ViewData.Model = new QuestionListViewModel(questions, 0);
@@ -43,7 +43,7 @@ namespace QASystem.Web.Controllers
 
         }
 
-
+        [ValidateInput(false)]
         public ActionResult Ask(QuestionViewModel questionVM = null)
         {
             var subjects = _subjectService.GetAll();
@@ -70,6 +70,11 @@ namespace QASystem.Web.Controllers
         [ValidateInput(false)]
         public ActionResult New(QuestionViewModel questionVM)
         {
+            if (!ModelState.IsValid)
+            {
+                //返回提问页面
+                return RedirectToAction("Ask", questionVM);
+            }
             //add question
             var res = _questionService.Add(new Question()
             {
@@ -80,12 +85,12 @@ namespace QASystem.Web.Controllers
                 Topic = new Topic()
                 {
                     SubjectId = questionVM.SubjectId,
-                    Name = questionVM.TopicStr
+                    Name = questionVM.TopicName
                 },
                 AuthorId = questionVM.AuthorId,
                 Status = (int)QuestionStatus.Published,
             });
-            if (res == null)
+            if (res == null || res.Id <= 0)
             {
                 //返回提问页面
                 return RedirectToAction("Ask", questionVM);
@@ -109,7 +114,7 @@ namespace QASystem.Web.Controllers
         /// <param name="pageIndex"></param>
         /// <returns></returns>
         [LoginSkip]
-        public ActionResult ListBySubject(int id, int pageIndex = 0, int pageSize = 5)
+        public ActionResult ListBySubject(int id, int pageIndex = 0, int pageSize = 15)
         {
             var questionListVM = new QuestionListViewModel(_questionService.ListBySubject(id, pageIndex, pageSize), id);
             return View(questionListVM);
