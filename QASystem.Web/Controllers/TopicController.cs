@@ -21,7 +21,7 @@ namespace QASystem.Web.Controllers
         [LoginSkip]
         public PartialViewResult HotTopics()
         {
-            ViewBag.Topics = _topicService.GetHotTopics();
+            ViewBag.Topics = _topicService.GetHotTopics(5);
             return PartialView();
         }
     }

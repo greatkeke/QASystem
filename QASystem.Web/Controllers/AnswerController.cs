@@ -3,6 +3,7 @@ using QASystem.Web.Helper;
 using QASystem.Web.Models;
 using System.Web.Mvc;
 using System;
+using QASystem.Web.Attributes;
 
 namespace QASystem.Web.Controllers
 {
@@ -15,6 +16,7 @@ namespace QASystem.Web.Controllers
         }
 
         [ValidateInput(false)]
+        [AjaxRequest]
         public PartialViewResult New(int questionId, string newAnswerContent)
         {
             var answer = _answerService.Add(questionId, newAnswerContent, OperateContext.Current.LoginUser.Id);

@@ -15,9 +15,6 @@ namespace QASystem.Web.Helper
     {
         public const string CookiePath = "/";
         public const string InfoKey = "ainfo";
-        //public const string Admin_PermissionKey = "apermission";
-        //public const string Admin_TreeString = "aTreeString";
-        //public const string Admin_LogicSessionKey = "BLLSession";
 
         private HttpSessionState Session = HttpContext.Current.Session;
         private HttpRequest Request = HttpContext.Current.Request;

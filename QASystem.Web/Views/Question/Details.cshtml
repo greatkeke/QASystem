@@ -58,6 +58,7 @@
             HttpMethod = "Post",
             InsertionMode = InsertionMode.Replace,
             LoadingElementId = "Loading",
+            OnComplete = "OnComplete"
         }))
         {
             @Html.Hidden("QuestionId", Model.Id)
@@ -79,4 +80,8 @@
     var ue = UE.getEditor('container', {
         autoHeight: true
     });
+    function OnComplete(jsonData) {
+       // alert(jsonData.Statu);
+       
+    }
 </script>

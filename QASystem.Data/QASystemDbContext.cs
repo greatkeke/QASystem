@@ -7,6 +7,11 @@
     using System.Data.Entity.ModelConfiguration;
     using System.Linq;
     using System.Reflection;
+
+    /// <summary>
+    /// 数据上下文
+    /// 使用MySql数据库时,使用特性:[DbConfigurationType(typeof(MySqlEFConfiguration))]
+    /// </summary>
     [DbConfigurationType(typeof(MySqlEFConfiguration))]
     public class QASystemDbContext : DbContext, IUnitOfWork
     {
@@ -32,9 +37,8 @@
                 dynamic configurationInstance = Activator.CreateInstance(type);
                 modelBuilder.Configurations.Add(configurationInstance);
             }
-            //...or do it manually below. For example,
+            //^-^或者手动附加,例如:
             //modelBuilder.Configurations.Add(new LanguageMap());
-
             base.OnModelCreating(modelBuilder);
         }
 

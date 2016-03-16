@@ -19,9 +19,9 @@ namespace QASystem.Data
         #region Ctor
 
         /// <summary>
-        /// Ctor
+        /// 构造方法
         /// </summary>
-        /// <param name="context">Object context</param>
+        /// <param name="context">支持事务的上下文对象</param>
         public EfRepository(IUnitOfWork uow)
         {
             this._context = uow as QASystemDbContext;
@@ -32,10 +32,10 @@ namespace QASystem.Data
         #region Utilities
 
         /// <summary>
-        /// Get full error
+        /// 获取所有的错误
         /// </summary>
-        /// <param name="exc">Exception</param>
-        /// <returns>Error</returns>
+        /// <param name="exc">异常</param>
+        /// <returns>异常文本</returns>
         protected string GetFullErrorText(DbEntityValidationException exc)
         {
             var msg = string.Empty;
@@ -50,31 +50,28 @@ namespace QASystem.Data
         #region Methods
 
         /// <summary>
-        /// Get entity by identifier
+        /// 根据主键获取实体
         /// </summary>
-        /// <param name="id">Identifier</param>
-        /// <returns>Entity</returns>
+        /// <param name="id">主键</param>
+        /// <returns>实体</returns>
         public virtual T GetById(object id)
         {
-            //see some suggested performance optimization (not tested)
-            //http://stackoverflow.com/questions/11686225/dbset-find-method-ridiculously-slow-compared-to-singleordefault-on-id/11688189#comment34876113_11688189
+            //缓存
             return this.Entities.Find(id);
         }
 
         /// <summary>
-        /// Insert entity
+        /// 新增一个实体
         /// </summary>
-        /// <param name="entity">Entity</param>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         public virtual T Insert(T entity)
         {
             try
             {
                 if (entity == null)
                     throw new ArgumentNullException("entity");
-
                 return this.Entities.Add(entity);
-
-                //this._context.SaveChanges();
             }
             catch (DbEntityValidationException dbEx)
             {
@@ -83,20 +80,17 @@ namespace QASystem.Data
         }
 
         /// <summary>
-        /// Insert entities
+        /// 新增实体集合
         /// </summary>
-        /// <param name="entities">Entities</param>
+        /// <param name="entities">实体集合</param>
         public virtual void Insert(IEnumerable<T> entities)
         {
             try
             {
                 if (entities == null)
                     throw new ArgumentNullException("entities");
-
                 foreach (var entity in entities)
                     this.Entities.Add(entity);
-
-                //this._context.SaveChanges();
             }
             catch (DbEntityValidationException dbEx)
             {
@@ -105,17 +99,15 @@ namespace QASystem.Data
         }
 
         /// <summary>
-        /// Update entity
+        /// 修改实体
         /// </summary>
-        /// <param name="entity">Entity</param>
+        /// <param name="entity">实体</param>
         public virtual void Update(T entity)
         {
             try
             {
                 if (entity == null)
                     throw new ArgumentNullException("entity");
-
-                //this._context.SaveChanges();
             }
             catch (DbEntityValidationException dbEx)
             {
@@ -124,17 +116,15 @@ namespace QASystem.Data
         }
 
         /// <summary>
-        /// Update entities
+        /// 修改实体集合
         /// </summary>
-        /// <param name="entities">Entities</param>
+        /// <param name="entities">实体集合</param>
         public virtual void Update(IEnumerable<T> entities)
         {
             try
             {
                 if (entities == null)
                     throw new ArgumentNullException("entities");
-
-                //this._context.SaveChanges();
             }
             catch (DbEntityValidationException dbEx)
             {
@@ -143,19 +133,16 @@ namespace QASystem.Data
         }
 
         /// <summary>
-        /// Delete entity
+        /// 删除实体
         /// </summary>
-        /// <param name="entity">Entity</param>
+        /// <param name="entity">实体</param>
         public virtual void Delete(T entity)
         {
             try
             {
                 if (entity == null)
                     throw new ArgumentNullException("entity");
-
                 this.Entities.Remove(entity);
-
-               // this._context.SaveChanges();
             }
             catch (DbEntityValidationException dbEx)
             {
@@ -164,9 +151,9 @@ namespace QASystem.Data
         }
 
         /// <summary>
-        /// Delete entities
+        /// 删除实体集合
         /// </summary>
-        /// <param name="entities">Entities</param>
+        /// <param name="entities">实体集合</param>
         public virtual void Delete(IEnumerable<T> entities)
         {
             try
@@ -177,7 +164,6 @@ namespace QASystem.Data
                 foreach (var entity in entities)
                     this.Entities.Remove(entity);
 
-               // this._context.SaveChanges();
             }
             catch (DbEntityValidationException dbEx)
             {
@@ -190,7 +176,7 @@ namespace QASystem.Data
         #region Properties
 
         /// <summary>
-        /// Gets a table
+        /// 数据表
         /// </summary>
         public virtual IQueryable<T> Table
         {
@@ -201,7 +187,7 @@ namespace QASystem.Data
         }
 
         /// <summary>
-        /// Gets a table with "no tracking" enabled (EF feature) Use it only when you load record(s) only for read-only operations
+        /// 不被上下文跟踪的数据表(用它获取的数据只进行读操作)
         /// </summary>
         public virtual IQueryable<T> TableNoTracking
         {
@@ -212,7 +198,7 @@ namespace QASystem.Data
         }
 
         /// <summary>
-        /// Entities
+        /// 实体集合
         /// </summary>
         protected virtual IDbSet<T> Entities
         {

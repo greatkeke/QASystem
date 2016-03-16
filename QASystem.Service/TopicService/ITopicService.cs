@@ -6,6 +6,10 @@ namespace QASystem.Service.TopicService
     public interface ITopicService
     {
         IEnumerable<Topic> GetAll();
-        IEnumerable<Topic> GetHotTopics();
+        /// <summary>
+        /// 获取最热的话题
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<Topic> GetHotTopics(int count);
     }
 }

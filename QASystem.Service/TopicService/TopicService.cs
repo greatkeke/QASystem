@@ -2,7 +2,6 @@
 using QASystem.Core.Domain;
 using QASystem.Core;
 using System.Linq;
-using System;
 
 namespace QASystem.Service.TopicService
 {
@@ -22,9 +21,9 @@ namespace QASystem.Service.TopicService
             return _topicRepository.Table.ToList();
         }
 
-        public IEnumerable<Topic> GetHotTopics()
+        public IEnumerable<Topic> GetHotTopics(int count)
         {
-            return _topicRepository.Table.OrderByDescending(u => u.num).Take(5).ToList();
+            return _topicRepository.Table.OrderByDescending(u => u.num).Take(count).ToList();
         }
     }
 

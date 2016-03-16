@@ -4,15 +4,15 @@ using System.Linq;
 namespace QASystem.Core
 {
     /// <summary>
-    /// Repository
+    /// 仓储
     /// </summary>
     public partial interface IRepository<T> where T : BaseEntity
     {
         /// <summary>
-        /// Get entity by identifier
+        /// 根据主键获取实体
         /// </summary>
-        /// <param name="id">Identifier</param>
-        /// <returns>Entity</returns>
+        /// <param name="id">主键</param>
+        /// <returns>实体</returns>
         T GetById(object id);
 
         /// <summary>
@@ -23,42 +23,42 @@ namespace QASystem.Core
         T Insert(T entity);
 
         /// <summary>
-        /// Insert entities
+        /// 新增实体集合
         /// </summary>
-        /// <param name="entities">Entities</param>
+        /// <param name="entities">实体集合</param>
         void Insert(IEnumerable<T> entities);
 
         /// <summary>
-        /// Update entity
+        /// 修改实体
         /// </summary>
-        /// <param name="entity">Entity</param>
+        /// <param name="entity">实体</param>
         void Update(T entity);
 
         /// <summary>
-        /// Update entities
+        /// 修改实体集合
         /// </summary>
-        /// <param name="entities">Entities</param>
+        /// <param name="entities">实体集合</param>
         void Update(IEnumerable<T> entities);
 
         /// <summary>
-        /// Delete entity
+        /// 删除实体
         /// </summary>
-        /// <param name="entity">Entity</param>
+        /// <param name="entity">实体</param>
         void Delete(T entity);
 
         /// <summary>
-        /// Delete entities
+        /// 删除实体集合
         /// </summary>
-        /// <param name="entities">Entities</param>
+        /// <param name="entities">实体集合</param>
         void Delete(IEnumerable<T> entities);
 
         /// <summary>
-        /// Gets a table
+        /// 数据表
         /// </summary>
         IQueryable<T> Table { get; }
 
         /// <summary>
-        /// Gets a table with "no tracking" enabled (EF feature) Use it only when you load record(s) only for read-only operations
+        /// 不被上下文跟踪的数据表(用它获取的数据只进行读操作)
         /// </summary>
         IQueryable<T> TableNoTracking { get; }
     }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using QASystem.Core.Domain;
 using QASystem.Core;
 using System.Linq;

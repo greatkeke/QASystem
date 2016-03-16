@@ -3,6 +3,9 @@ using System;
 
 namespace QASystem.Core.DTOModels
 {
+    /// <summary>
+    /// QuestionDto模型：用于列表展示，不附加具体内容，利于传输
+    /// </summary>
     public class QuestionDto
     {
         public int Id { get; set; }

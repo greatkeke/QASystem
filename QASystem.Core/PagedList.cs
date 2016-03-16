@@ -12,23 +12,23 @@ namespace QASystem.Core
     public class PagedList<T> : List<T>, IPagedList<T>
     {
         /// <summary>
-        /// Ctor (paging in performed inside)
+        /// 构造分页集合
         /// </summary>
-        /// <param name="source">source</param>
-        /// <param name="pageIndex">Page index</param>
-        /// <param name="pageSize">Page size</param>
+        /// <param name="source">数据源</param>
+        /// <param name="pageIndex">当前页码</param>
+        /// <param name="pageSize">步长</param>
         public PagedList(IEnumerable<T> source, int pageIndex, int pageSize)
         {
             Init(source, pageIndex, pageSize);
         }
 
         /// <summary>
-        /// Ctor (already paged soure is passed)
+        /// 构造分页集合
         /// </summary>
-        /// <param name="source">source</param>
-        /// <param name="pageIndex">Page index</param>
-        /// <param name="pageSize">Page size</param>
-        /// <param name="totalCount">Total count</param>
+        /// <param name="source">数据源</param>
+        /// <param name="pageIndex">当前页码</param>
+        /// <param name="pageSize">步长</param>
+        /// <param name="totalCount">数据源总数</param>
         public PagedList(IEnumerable<T> source, int pageIndex, int pageSize, int totalCount)
         {
             Init(source, pageIndex, pageSize, totalCount);

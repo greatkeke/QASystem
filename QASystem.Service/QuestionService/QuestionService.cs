@@ -21,12 +21,6 @@ namespace QASystem.Service.QuestionService
             _topicRepository = topicRepository;
         }
 
-        public IEnumerable<Question> ListSortbyVote(DateTime start)
-        {
-            start = TimeZoneInfo.ConvertTimeToUtc(start);
-            return _questionRepository.Table.Where(u => u.DateEndUtc > start).ToList();
-        }
-
         public Question Add(Question question)
         {
             //当前主题下的该话题是否存在
@@ -43,27 +37,6 @@ namespace QASystem.Service.QuestionService
                 res = _questionRepository.TableNoTracking.FirstOrDefault(u => u.Id == res.Id);
             }
             return res ?? null;
-        }
-
-        public IPagedList<QuestionDto> NewestList(int pageIndex, int pageSize)
-        {
-            var query = _questionRepository.Table
-                .OrderByDescending(u => u.Id)//按照发布顺序排序
-                .Where(u => u.Status > (int)QuestionStatus.Created && u.Status < (int)QuestionStatus.Deleted)//状态
-                .Select(u => new QuestionDto()//按需索取
-                {
-                    Id = u.Id,
-                    Title = u.Title,
-                    DateEndUtc = u.DateEndUtc,
-                    DateStartUtc = u.DateEndUtc,
-                    AuthorId = u.AuthorId,
-                    Author = u.Author,
-                    Status = u.Status,
-                    Topic = u.Topic,
-                    TopicId = u.TopicId,
-                    Votes = u.Votes
-                });
-            return new PagedList<QuestionDto>(query, pageIndex, pageSize);
         }
 
         public Question GetByIdNoTracking(int id)
