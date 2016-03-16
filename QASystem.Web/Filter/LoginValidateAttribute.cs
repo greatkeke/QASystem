@@ -1,4 +1,5 @@
 ﻿using QASystem.Web.Helper;
+using System.Web.Mvc;
 
 namespace QASystem.Web.Filter
 {
@@ -21,7 +22,7 @@ namespace QASystem.Web.Filter
                 //1.验证用户是否登陆(Session && Cookie)
                 if (!OperateContext.Current.IsLogin())
                 {
-                    filterContext.Result = OperateContext.Current.Redirect("/Account/Login", filterContext.ActionDescriptor);
+                    filterContext.Result = new RedirectResult("/Account/Login");
                 }
             }
             //base.OnAuthorization(filterContext);

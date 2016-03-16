@@ -1,7 +1,6 @@
 ﻿using Autofac.Integration.Mvc;
 using QASystem.Core.Domain;
 using QASystem.Service.AccountService;
-using QASystem.Web.Attributes;
 using QASystem.Web.Models;
 using System;
 using System.Runtime.Remoting.Messaging;
@@ -105,46 +104,6 @@ namespace QASystem.Web.Helper
                 }
             }
             return true;
-        }
-
-        /// <summary>
-        /// 重定向方法 有两种情况：如果是Ajax请求，则返回 Json字符串；如果是普通请求，则 返回重定向命令
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult Redirect(string url, ActionDescriptor action)
-        {
-            //如果Ajax请求没有权限，就返回 Json消息
-            if (action.IsDefined(typeof(AjaxRequestAttribute), false)
-            || action.ControllerDescriptor.IsDefined(typeof(AjaxRequestAttribute), false))
-            {
-                return RedirectAjax("nologin", "您没有登陆或没有权限访问此页面~~", null, url);
-            }
-            else//如果 超链接或表单 没有权限访问，则返回 302重定向命令
-            {
-                return new RedirectResult(url);
-            }
-        }
-
-        /// <summary>
-        /// 生成 Json 格式的返回值
-        /// </summary>
-        /// <param name="statu"></param>
-        /// <param name="msg"></param>
-        /// <param name="data"></param>
-        /// <param name="backurl"></param>
-        /// <returns></returns>
-        public ActionResult RedirectAjax(string statu, string msg, object data, string backurl)
-        {
-            AjaxMsgModel ajax = new AjaxMsgModel()
-            {
-                Statu = statu,
-                Msg = msg,
-                Data = data,
-                BackUrl = backurl
-            };
-            JsonResult res = new JsonResult();
-            res.Data = ajax;
-            return res;
         }
 
         internal void LoginOff()
